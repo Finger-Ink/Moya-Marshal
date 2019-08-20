@@ -30,7 +30,7 @@ public extension Response {
     
     /// Maps data received from the signal into an object which implements the Unmarshaling protocol.
     /// If the conversion fails, the signal errors.
-    public func map<T: Unmarshaling>(to type: T.Type) throws -> T {
+    func map<T: Unmarshaling>(to type: T.Type) throws -> T {
         guard let jsonObject = try mapJSON() as? MarshaledObject else {
             throw MoyaError.jsonMapping(self)
         }
@@ -39,7 +39,7 @@ public extension Response {
     
     /// Maps data received from the signal into an array of objects which implement the Unmarshaling
     /// protocol.
-    public func mapArray<T: Unmarshaling>(of type: T.Type) throws -> [T] {
+    func mapArray<T: Unmarshaling>(of type: T.Type) throws -> [T] {
         guard let array = try mapJSON() as? [MarshaledObject] else {
             throw MoyaError.jsonMapping(self)
         }
